@@ -38,3 +38,7 @@ Redis
 	Runs entirely in RAM. Extremely fast data structures (Strings, Hashes, Sorted Sets) with TTL support.
 	Distributed rate limiters, caching layers, real-time message brokers, pub-sub systems.
 
+
+
+Is it money, transactions, or strict structural relationships? $\rightarrow$ PostgreSQLIs it millions of logs/metrics pouring in every second? $\rightarrow$ CassandraIs it a dynamic, nested JSON structure that changes over time? $\rightarrow$ MongoDBIs it a fast, predictable lookup by a single key (like a User ID)? $\rightarrow$ DynamoDB
+
