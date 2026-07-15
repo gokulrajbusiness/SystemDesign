@@ -1,0 +1,2 @@
+1. if snowflake is used we cannot sort it based on timestamp
+2. if flicker id generation is used we can add to db based on timestamp

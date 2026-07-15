@@ -1,0 +1,44 @@
+Relational vs. Non-Relational (The Big Pivot)
+Use Relational (PostgreSQL, MySQL) When:
+•	The "Why": You need ACID compliance (strict guarantees that transactions won't corrupt data) and complex data relationships.
+•	Best Use Cases: Financial applications, banking ledger systems, e-commerce checkout/order management, user account management.
+•	Key Phrase for Interviews: "We choose relational because we have structured data with high relational complexity requiring strong transactional consistency (ACID)."
+Use Non-Relational (NoSQL) When:
+•	The "Why": You need to scale horizontally to handle massive traffic, high write volumes, or unstructured/semi-structured data.
+•	Best Use Cases: Real-time analytics, high-volume ingestion (IoT logs), caching, chat applications, product catalogs.
+•	Key Phrase for Interviews: "We choose NoSQL because we need to optimize for massive horizontal scale, flexible schemas, and low-latency access over strict tabular structure."
+
+
+
+📑 NoSQL Cheat Sheet: When & Why
+Use this breakdown to instantly match the specific NoSQL database to the problem:
+Database	When to Use It (The Case)	Why Choose It (The Advantage)	Real-World Example
+MongoDB
+
+
+(Document Store)	When your data structure is fluid, nested, or hierarchical, and you need to query by many different fields.
+Super flexible JSON-like document schema. Easy to index various fields and supports aggregations natively.
+Content management systems (CMS), user profile dashboards, product catalogs.
+Cassandra
+
+
+(Wide-Column)	When you have an extremely high write volume distributed across multiple geographic regions with zero downtime.
+Linear horizontal scalability. Masterless architecture (no single point of failure) optimized for blisteringly fast writes.
+Activity feeds, IoT sensor telemetry tracking, logging systems, chat history storage.
+DynamoDB
+
+
+(Key-Value / Document)	When you are building a serverless cloud application that requires predictable single-digit millisecond latency at scale with zero operational overhead.
+	Fully managed AWS native service. Auto-scales connections and storage effortlessly; abstracts away the operational pain of cluster management.
+		Shopping carts, user session management, gaming leaderboards, unique ID coordination.
+Redis
+
+
+(In-Memory Key-Value)	When you need sub-millisecond data retrieval speeds for transient or highly dynamic lookup data.
+	Runs entirely in RAM. Extremely fast data structures (Strings, Hashes, Sorted Sets) with TTL support.
+	Distributed rate limiters, caching layers, real-time message brokers, pub-sub systems.
+
+
+
+Is it money, transactions, or strict structural relationships? $\rightarrow$ PostgreSQLIs it millions of logs/metrics pouring in every second? $\rightarrow$ CassandraIs it a dynamic, nested JSON structure that changes over time? $\rightarrow$ MongoDBIs it a fast, predictable lookup by a single key (like a User ID)? $\rightarrow$ DynamoDB
+
