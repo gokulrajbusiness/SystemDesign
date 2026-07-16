@@ -1,0 +1,20 @@
+Q1: "Why did you choose a synchronous .get() on the Kafka producer instead of asynchronous sending? Doesn't that severely hurt throughput?"
+•	Your Answer:
+o	"Yes, it does introduce a throughput trade-off, but it was a deliberate choice driven by our strict data-integrity requirements. In this gateway, legacy financial/transactional events cannot be lost.
+o	If we used asynchronous 'fire-and-forget' sending, we would acknowledge the message to TIBCO JMS before confirming it was safely written to Kafka's distributed commit log. If the gateway crashed or Kafka rejected the write immediately after, that message would be lost forever. By blocking on .get(), we ensure the message is durably written to Kafka before we commit the JMS transaction, guaranteeing at-least-once delivery."
+
+Q2: "Instead of spawning a new JVM process per configuration on a VM, why didn't you use Kubernetes / Docker containers?"
+•	Your Answer:
+o	"The existing infrastructure of this specific legacy enterprise division was VM-based, and migrating the entire legacy runtime to Kubernetes was out of scope.
+o	By designing the gateway to spawn separate JVM processes per configuration on the VM, we achieved process-level isolation (preventing memory leaks or thread blocks in one legacy flow from taking down others) while working seamlessly within our existing VM and Ansible-based deployment infrastructure."
+
+Q3: "What happens if a message fails repeatedly on the publisher (Kafka) layer even after retries? How do you prevent blocking the entire queue?"
+•	Your Answer:
+o	"Because we use a Spring JMS listener, if both the listener-layer and publisher-layer retries are exhausted, the gateway throws an exception back to the Spring JMS container.
+o	This prevents the message from being acknowledged. The TIBCO JMS broker then handles this based on its configured container policies (e.g., routing it to a Dead Letter Queue (DLQ) or retrying after a back-off period). This ensures we don't drop the message, and we can trigger alerts for manual intervention."
+
+Q4: "How does your Ansible deployment workflow work for this multi-JVM setup?"
+•	Your Answer:
+o	"Our Ansible site.yaml copies the compiled core runner JAR to the target VMs. It reads a dynamic hosts.yaml inventory that contains the configurations for each gateway flow.
+o	Ansible loops through these configurations, creates dedicated system folders with the respective properties, and runs a shell script using main.yaml that boots up separate background Java processes with custom process names (e.g., using -DflowName=flowA) so we can monitor each process independently."
+
