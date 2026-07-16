@@ -1,0 +1,26 @@
+Q1: "Why did you migrate from RabbitMQ to Kafka? What did Kafka give you that RabbitMQ couldn't?
+"The Trap: Don't just say "Kafka is faster."Your Answer:Replayability & Retention: "RabbitMQ deletes messages once acknowledged.
+If our Elasticsearch cluster went down or experienced mapping issues, we lost the ability to replay the historical stream.
+Kafka acts as a distributed commit log, allowing us to rewind consumer offsets and reprocess data."Scale and Partitioning:
+"With RabbitMQ, scaling consumers on a single queue can sometimes lead to competition overhead.
+Kafka’s partitioning model gave us strict ordering guarantees per transaction key (e.g., partitioning by tradeID) while allowing us to scale out consumers horizontally up to the partition count.
+
+"Q2: "In your retry logic, you mention you 'ack first and then try to do it'.
+If the service crashes right after the ack but before the task is successfully executed in the retry flow, don't you lose data?
+"Your Answer:"No, because the task state is already safely persisted in MongoDB as pending before the Kafka/Rabbit message is acknowledged.
+ If the service crashes right after the acknowledgement, the scheduler (rumbleApp.start()) will scan the MongoDB collection on startup,
+  find the orphaned pending task (based on updatedAt thresholds), and pick it back up for reprocessing.
+  MongoDB acts as our source of truth for failed state, decoupling it from the broker's transient queues.
+
+"Q3: "You are using WebFlux and Reactive Mongo. Why did you choose Optimistic Locking (OptimisticLockingFailureException) instead of Pessimistic Locking?
+"Your Answer:"Because this is a high-throughput, read-heavy and fast-write passthrough service.
+ Pessimistic locking blocks database connections and threads, which completely defeats the purpose of an asynchronous, non-blocking WebFlux event loop.
+  Optimistic locking using version fields allows us to handle rare concurrent updates on the same tradeID elegantly.
+   When a collision occurs, we catch the OptimisticLockingFailureException and trigger an immediate, low-overhead application-level retry.
+
+"Q4: "How does WebFlux handle concurrency differently than standard Spring MVC under the hood?
+"Your Answer:"Spring MVC uses a block-and-pool model (one thread per request, usually Tomcat).
+ If downstream APIs or databases are slow, those threads block, leading to thread exhaustion.
+  WebFlux uses a non-blocking event-loop model (usually Netty) with a very small number of fixed threads (typically matching CPU cores).
+   Instead of blocking a thread while waiting for Elasticsearch or MongoDB, the thread registers a callback and immediately goes back to handling other incoming requests.
+    This is how we achieved $4\text{M}$ messages/day with minimal system resources."
