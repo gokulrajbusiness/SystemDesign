@@ -1,0 +1,16 @@
+Concepts,Revised?,Last Revised,Confidence,Algorithms/Problems
+Arrays and Hashing,Yes,,5
+Two Pointers,Yes,,5
+SlidingWindows,Yes,,5
+Stack,Yes,,4
+Binary Search,Yes,,5
+Linked List,Yes,,4
+Trees,Yes,,3,BackTracking
+Heap/Priority Queue,No,20-02-2026,
+BackTracking,Yes,,4
+Tries,No,,
+Graphs,No,,
+Advanced Graphs,No,,
+1D DP,NC,,
+2D DP,NC,,
+Greedy,NC,,
