@@ -1,0 +1,53 @@
+S.no,Question   , Studied, Last Revised
+1  , Parking Lot System                         ,Yes, 21/07/2026
+2  , URL Shortener                              ,No
+3  , LRU Cache                                  ,No
+4  , Rate Limiter                               ,No
+5  , Tic‑Tac‑Toe Game                           ,No
+6  , Library Management System                  ,No
+7  , E‑Commerce Shopping Cart                   ,No
+8  , Vending Machine                            ,No
+9  , ATM System                                 ,No
+10 , Snake & Ladders Game                       ,No
+11 , Autocomplete / Word Suggestion             ,No
+12 , Movie Ticket Booking                       ,No
+13 , Chat / Messaging App                       ,No
+14 , Elevator System                            ,No
+15 , Inventory Management System                ,No
+16 , In‑Memory File System                      ,No
+17 , Dropbox-style File Storage                 ,No
+18 , Chess Game                                 ,No
+19 , Text Editor / Word Processor               ,No
+20 , Meeting Room Scheduler                     ,No
+21 , Notification System (email/SMS)            ,No
+22 , Traffic Light System                       ,No
+23 , Splitwise‑Style Expense Splitter           ,No
+24 , Order & Inventory Management               ,No
+25 , Git-like Version Control                   ,No
+26 , Hotel/AirBnB Booking System                ,No
+27 , Payment Gateway                            ,No
+28 , Auction / Limit Order Book                 ,No
+29 , Top‑K Counter / Trending Items             ,No
+30 , Distributed File Sharing                   ,No
+31 , Job Scheduler / Cron System                ,No
+32 , Distributed Rate Limiter                   ,No
+33 , Real-time ETA & Tracking                   ,No
+34 , Notification Service at Scale              ,No
+35 , Distributed Stream Processor (Kafka-like)  ,No
+36 , Social Media Feed                          ,No
+37 , Ride‑Sharing App (Uber/Lyft)               ,No
+38 , Pub/Sub Messaging System                   ,No
+39 , Distributed Cache System                   ,No
+40 , Dependency Injection / IoC Framework       ,No
+41 , Distributed Analytics / Logging System     ,No
+42 , Distributed Bot / Crawler System           ,No
+43 , Traffic Control / Intersection System      ,No
+44 , Photo Sharing Service (Instagram-like)     ,No
+45 , Chess Clock System                         ,No
+46 , Cricket Scoreboard System                  ,No
+47 , Blog / CMS Platform                        ,No
+48 , Music Streaming Service                    ,No
+49 , Hospital Patient Management System         ,No
+50 , Bus/Route Reservation System               ,No
+,,,
+,,,

@@ -1,4 +1,5 @@
-1  , Parking Lot System                         ,No
+S.no,Question   , Studied, Last Revised
+1  , Parking Lot System                         ,Yes, 21/07/2026
 2  , URL Shortener                              ,No
 3  , LRU Cache                                  ,No
 4  , Rate Limiter                               ,No
@@ -48,3 +49,5 @@
 48 , Music Streaming Service                    ,No
 49 , Hospital Patient Management System         ,No
 50 , Bus/Route Reservation System               ,No
+,,,
+,,,
